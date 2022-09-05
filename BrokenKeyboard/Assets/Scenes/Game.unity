@@ -247,6 +247,24 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: amogus
+    clip: {fileID: 8300000, guid: 9d6b4b44fe3c37c449748dab39289f92, type: 3}
+    volume: 1
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: peloScream
+    clip: {fileID: 8300000, guid: c704db52c8352f44abcb3600f7907f23, type: 3}
+    volume: 1
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &1373628354
 Transform:
   m_ObjectHideFlags: 0

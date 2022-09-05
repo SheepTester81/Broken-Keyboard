@@ -19,5 +19,15 @@ public class HandleInput : MonoBehaviour
             Debug.Log("ping");
             audio.Play("ping");
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("sus");
+            audio.Play("amogus");
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("Sr Pelo scream");
+            audio.Play("peloScream");
+        }
     }
 }
