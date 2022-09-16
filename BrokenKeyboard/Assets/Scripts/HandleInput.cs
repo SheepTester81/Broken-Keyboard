@@ -41,6 +41,12 @@ public class HandleInput : MonoBehaviour
     [Rename("Prefab")]
     [SerializeField] private GameObject Osymbol;
 
+    [Header("R")]
+    [Rename("SFX Event")]
+    [SerializeField] private RickRoll rickroll;
+    [Rename("Sprite")]
+    [SerializeField] private GameObject rickImage;
+
     [Header("S")]
     [Rename("SFX")]
     [SerializeField] private string S = "amogus";
@@ -81,6 +87,12 @@ public class HandleInput : MonoBehaviour
             Instantiate(Osymbol, Olocal4.transform.position, Quaternion.identity);
             Instantiate(Osymbol, Olocal5.transform.position, Quaternion.identity);
             Instantiate(Osymbol, Olocal6.transform.position, Quaternion.identity);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log(rickroll);
+            rickImage.SetActive(!rickImage.activeSelf);
+            rickroll.Rickroll();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
