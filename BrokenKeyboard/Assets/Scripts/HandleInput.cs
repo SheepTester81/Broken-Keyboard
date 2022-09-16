@@ -19,6 +19,14 @@ public class HandleInput : MonoBehaviour
     [Rename("Activated?")]
     [SerializeField] private bool isActive = true;
 
+    [Header("!")]
+    [Rename("Cooldown")]
+    [SerializeField] private float EXCLAIMcooldown = 2f;
+    [Rename("Object")]
+    [SerializeField] private GameObject jumpscare;
+    [Rename("SFX Event")]
+    [SerializeField] private Jumpscare screamEffect;
+
     [Header("Alpha2")]
     [Rename("SFX")]
     [SerializeField] private string Alpha2 = "ping";
@@ -59,16 +67,27 @@ public class HandleInput : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
+        // Delete key
         if (Input.GetKeyDown(KeyCode.Delete) && isActive)
         {
             Debug.Log("Application Quit");
             Application.Quit();
         }
+        // ! key(aka 1 and shift)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && timer <= 0f)
+        {
+            Debug.Log("jumpscare");
+            timer = EXCLAIMcooldown;
+            jumpscare.SetActive(true);
+            StartCoroutine(screamEffect.Scream(EXCLAIMcooldown, jumpscare));
+        }
+        // 2 key
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Debug.Log("ping");
             audio.Play(Alpha2);
         }
+        // O key
         if (Input.GetKey(KeyCode.O) && timer <= 0f)
         {
             Debug.Log("spam symbol");
@@ -88,17 +107,20 @@ public class HandleInput : MonoBehaviour
             Instantiate(Osymbol, Olocal5.transform.position, Quaternion.identity);
             Instantiate(Osymbol, Olocal6.transform.position, Quaternion.identity);
         }
+        // R key
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log(rickroll);
             rickImage.SetActive(!rickImage.activeSelf);
             rickroll.Rickroll();
         }
+        // S key
         if (Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("sus");
             audio.Play(S);
         }
+        // J key
         if (Input.GetKeyDown(KeyCode.J))
         {
             Debug.Log("Sr Pelo scream");
