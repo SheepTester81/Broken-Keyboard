@@ -31,9 +31,15 @@ public class HandleInput : MonoBehaviour
     [Rename("SFX")]
     [SerializeField] private string Alpha2 = "ping";
 
+    [Header("E")]
+    [Rename("Cooldown")]
+    [SerializeField] private float Ecooldown = 2f;
+    [Rename("Object")]
+    [SerializeField] private GameObject Eobject;
+    
     [Header("O")]
     [Rename("Cooldown")]
-    [SerializeField] private float Ocooldown = 2f;
+    [SerializeField] private float Ocooldown = 2.2f;
     [Rename("Location 1")]
     [SerializeField] private GameObject Olocal1;
     [Rename("Location 2")]
@@ -87,6 +93,13 @@ public class HandleInput : MonoBehaviour
             Debug.Log("ping");
             audio.Play(Alpha2);
         }
+        // E Key
+        if (Input.GetKey(KeyCode.E) && timer <= 0f)
+        {
+            Debug.Log("E");
+            timer = Ocooldown;
+            StartCoroutine(E());
+        }
         // O key
         if (Input.GetKey(KeyCode.O) && timer <= 0f)
         {
@@ -126,5 +139,13 @@ public class HandleInput : MonoBehaviour
             Debug.Log("Sr Pelo scream");
             audio.Play(J);
         }
+    }
+
+    private IEnumerator E()
+    {
+        Eobject.SetActive(true);
+        audio.Play("eee");
+        yield return new WaitForSeconds(Ecooldown);
+        Eobject.SetActive(false);
     }
 }
