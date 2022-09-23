@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jumpscare : MonoBehaviour
 {
+    [Rename("SFX")]
     [SerializeField] private AudioSource audio;
 
     public IEnumerator Scream(float duration, GameObject objects)

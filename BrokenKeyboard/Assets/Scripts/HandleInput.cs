@@ -6,8 +6,11 @@ public class HandleInput : MonoBehaviour
 {
     [Header("Properties")]
 
+    [Rename("Audio Manager")]
     [SerializeField] private AudioManager audio;
+    [Rename("Minimum Positions")]
     [SerializeField] private Vector2 minRange;
+    [Rename("Maximum Positions")]
     [SerializeField] private Vector2 maxRange;
     private float timer = 2f;
 
@@ -68,6 +71,10 @@ public class HandleInput : MonoBehaviour
     [Header("J")]
     [Rename("SFX")]
     [SerializeField] private string J = "peloScream";
+
+    [Header("Space")]
+    [Rename("Can Jump?")]
+    [SerializeField] public bool CanJump = true;
 
     // Update is called once per frame
     void Update()
