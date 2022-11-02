@@ -39,6 +39,10 @@ public class HandleInput : MonoBehaviour
     [SerializeField] private float Ecooldown = 2f;
     [Rename("Object")]
     [SerializeField] private GameObject Eobject;
+
+    [Header("G")]
+    [Rename("Player Reference")]
+    [SerializeField] private Player player;
     
     [Header("O")]
     [Rename("Cooldown")]
@@ -76,6 +80,12 @@ public class HandleInput : MonoBehaviour
     [Rename("Can Jump?")]
     [SerializeField] public bool CanJump = true;
 
+    private void Start()
+    {
+        player.animator.SetBool("leg", false);
+        CanJump = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -106,6 +116,12 @@ public class HandleInput : MonoBehaviour
             Debug.Log("E");
             timer = Ocooldown;
             StartCoroutine(E());
+        }
+        //G key
+        if (Input.GetKeyDown(KeyCode.G) && !player.canMove)
+        {
+            player.canMove = true;
+            player.animator.SetBool("leg", true);
         }
         // O key
         if (Input.GetKey(KeyCode.O) && timer <= 0f)

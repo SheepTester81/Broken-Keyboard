@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum PlayerMovement {WASD, Arrow, Both}; // enum for picking movement type
-
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
 
-    [Rename("Move Type")]
-    [SerializeField] private PlayerMovement moveType;
     [Rename("Can Move?")]
-    [SerializeField] bool canMove = true;
+    public bool canMove = false;
     [Rename("Jump Force")]
     [SerializeField] private float jumpVelocity = 15f; // jump force
     [Rename("Double Jump Force")]
@@ -23,11 +19,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb; // rigidbody 2d
     [Rename("Box Collider")]
     [SerializeField] private Collider2D collider; // collider
+    [Rename("Center")]
+    [SerializeField] private Transform center; // collider
 
     [SerializeField] private LayerMask layerMask; // layermask
     private float horizontal = 0; // value(left = -1, right = 1)
     private bool doubleJump;
 
+    /*
     [Header("Shooting")] // any shooting
 
     [Rename("Bullet Prefab")]
@@ -42,6 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool CanShoot = true;
 
     private float nextTimeToFire = 0f;
+    */
 
     [Header("Other")]
 
@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     [SerializeField] private HandleInput input;
     [Rename("Audio Manager")]
     [SerializeField] private AudioManager audio;
+    [Rename("Animation Manager")]
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
@@ -116,7 +118,7 @@ public class Player : MonoBehaviour
     bool isGrounded()
     {
         // checks if player is grounded using raycast
-        RaycastHit2D raycastHit2d = Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, 0.55f, layerMask);
+        RaycastHit2D raycastHit2d = Physics2D.BoxCast(center.position, collider.bounds.size, 0f, Vector2.down, 0.55f, layerMask);
         return raycastHit2d != false; // returns raycast hit(true/false)
     }
 }
